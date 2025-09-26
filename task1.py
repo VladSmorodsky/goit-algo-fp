@@ -62,42 +62,40 @@ class LinkedList:
         prev_node.next = current_node.next
         current_node = None
 
+    def reverse(self) -> None:
+        """
+        Reverses the given linked list in place.
+        """
+        if not self.head:
+            return
+        current_element = self.head
+        prev_element = None
+        while current_element:
+            next_element = current_element.next
+            current_element.next = prev_element
+            prev_element = current_element
+            current_element = next_element
+        self.head = prev_element
 
-def reverse_linked_list(linked_list: LinkedList) -> None:
-    """
-    Reverses the given linked list in place.
-    """
-    if not linked_list.head:
-        return
-    current_element = linked_list.head
-    prev_element = None
-    while current_element:
-        next_element = current_element.next
-        current_element.next = prev_element
-        prev_element = current_element
-        current_element = next_element
-    linked_list.head = prev_element
+    def sort(self) -> None:
+        """
+        Sorts the linked list using insertion sort algorithm.
+        """
+        if not self.head or not self.head.next:
+            return
+        pseudo_head_element = Node(None)
+        curr_element = self.head
 
+        while curr_element:
+            next_element = curr_element.next
+            prev_element = pseudo_head_element
+            while prev_element.next and prev_element.next.data < curr_element.data:
+                prev_element = prev_element.next
+            curr_element.next = prev_element.next
+            prev_element.next = curr_element
 
-def sort_linked_list(linked_list: LinkedList) -> None:
-    """
-    Sorts the linked list using insertion sort algorithm.
-    """
-    if not linked_list.head or not linked_list.head.next:
-        return
-    pseudo_head_element = Node(None)
-    curr_element = linked_list.head
-
-    while curr_element:
-        next_element = curr_element.next
-        prev_element = pseudo_head_element
-        while prev_element.next and prev_element.next.data < curr_element.data:
-            prev_element = prev_element.next
-        curr_element.next = prev_element.next
-        prev_element.next = curr_element
-
-        curr_element = next_element
-    linked_list.head = pseudo_head_element.next
+            curr_element = next_element
+        self.head = pseudo_head_element.next
 
 
 def merge_sorted_lists(linked_list1: LinkedList, linked_list2: LinkedList) -> LinkedList:
@@ -139,11 +137,11 @@ llist.insert_at_end(20)
 llist.insert_at_end(25)
 
 print("Reverse list:")
-reverse_linked_list(llist)
+llist.reverse()
 llist.print_list()
 
 print('Sort list:')
-sort_linked_list(llist)
+llist.sort()
 llist.print_list()
 
 print('Merge 2 sorted lists:')
@@ -153,7 +151,7 @@ llist2.insert_at_start(1)
 llist2.insert_at_start(2)
 llist2.insert_at_start(5)
 llist2.insert_at_start(10)
-sort_linked_list(llist2)
+llist2.sort()
 
 merged_list = merge_sorted_lists(llist, llist2)
 merged_list.print_list()
