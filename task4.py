@@ -78,7 +78,8 @@ def build_heap_tree(arr: List[int]) -> Node:
     return nodes[0]
 
 
-heap_array = [9, 11, 3, 5, 7, 9, 8, 10, 2]
-heap_root = build_heap_tree(heap_array)
-print("heap_root:", heap_root)
-draw_tree(heap_root)
+if __name__ == "__main__":
+    heap_array = [9, 11, 3, 5, 7, 9, 8, 10, 2]
+    heap_root = build_heap_tree(heap_array)
+    print("heap_root:", heap_root)
+    draw_tree(heap_root)
