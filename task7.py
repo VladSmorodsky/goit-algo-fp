@@ -25,6 +25,6 @@ def evaluate_dice_roll(roll_count: int = 10_000) -> Dict[int, float]:
 if __name__ == '__main__':
     print("Сума | Імовірність")
     experiments_count = 100_000
-    results = evaluate_dice_roll(100_000)
+    results = evaluate_dice_roll(experiments_count)
     for dice_value, probability in results.items():
         print(f"{dice_value:4d} | {probability*100:.2f}%")
